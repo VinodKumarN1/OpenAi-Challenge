@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Document Extractor (OCR + LLM)</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body class="container py-4">
+
+  <h1 class="mb-4">Upload Document</h1>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="alert alert-warning" role="alert">
+        {{ messages[0] }}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <form method="POST" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="doc_type" class="form-label">Document Type</label>
+      <select class="form-select" id="doc_type" name="doc_type" required>
+        <option value="">Select...</option>
+        <option value="resume">Resume</option>
+        <option value="aadhaar">Aadhaar</option>
+        <option value="note">Handwritten Note</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="file" class="form-label">Upload Image</label>
+      <input class="form-control" type="file" id="file" name="file" accept="image/png, image/jpeg" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Process</button>
+  </form>
+
+  {% if ocr_text %}
+    <h3 class="mt-5">Extracted OCR Text:</h3>
+    <pre style="background:#f8f9fa; padding: 10px;">{{ ocr_text }}</pre>
+  {% endif %}
+
+  {% if result %}
+    <h3 class="mt-4">OpenAI Response:</h3>
+    <pre style="background:#e9ecef; padding: 10px;">{{ result }}</pre>
+  {% endif %}
+
+</body>
+</html>
