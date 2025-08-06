@@ -1,0 +1,1 @@
+*I combined Tesseract OCR for text extraction and OpenAI's GPT-4o to parse and convert unstructured text into structured JSON outputs. I designed custom prompts for each document type, built a Tkinter-based GUI, and demonstrated clear reasoning for my tech choices. It wasn’t just about copying — it was about applying, adapting, and delivering*
